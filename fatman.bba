@@ -1,0 +1,109 @@
+; fatman
+;crtl-alt-c to stop execution
+
+;shape constants
+#HEIKO=0
+#HEIKO1=1
+#LOGO=2
+#GUN=3
+
+#SND_BOUNCE=0
+#SND_GUN=1
+
+
+;using AMIGA mode not BLITZ mode, so that we can use screen function
+
+; music
+LoadModule 0, "mus/pac.mod"
+;PlayModule 0
+
+;LoadSound #SND_BOUNCE, "snd/start.snd.iff"
+;LoadSound #SND_GUN, "snd/start.snd.iff"
+
+;screen
+Screen 0,5, "Fatman - Lass den Dicken huepfen!"
+
+;doublebuffer
+;BitMap 0,320,256,5 
+;BitMap 1,320,256,5
+
+ScreensBitMap 0,0
+
+LoadScreen 0, "gfx/fatman.pic.iff", 0
+use palette 0
+
+;shapes
+for i = 0 to 3
+    read x, y, x2, y2
+    y=(256-y)
+    w=x2-x
+    y2=(256-y2)
+    h=y2-y
+
+    GetaShape i,x,y,w,h
+next
+
+DATA 7,159,156,10 ;heiko1
+DATA 157,159,232,98	;heiko2
+DATA 50,241,201,166	;logo
+DATA 213,236,246,207 ;gun
+
+;titlescreen
+
+Boxf 1,12,246,255,0 ; clear screen
+
+blit #LOGO, 60, 60
+
+BitMapOutput 0
+Locate 33,2
+print "00000"
+
+MouseWait
+
+Boxf 1,12,246,255,0 ; clear screen
+
+blit #GUN, 200, 20
+
+;bounce
+heiko=30
+y=100
+bouncing=TRUE
+while bouncing
+  ;erase
+  BlitMode EraseMode
+  blit #HEIKO, 50, heiko
+
+  ;calculate
+  bounce=bounce+2
+  IF bounce=180
+  	bounce=2
+    ;Sound #SND_BOUNCE,15
+  ENDIF
+
+  x=SIN(bounce*3.141593/180)
+  heiko=INT((x*(y-244)/2.3)+107)-30
+
+  ;blit
+  BlitMode CookieMode
+  blit #HEIKO, 50, heiko
+
+  ;fire button pressed?
+  if Joyb(0) 
+    ;Sound #SND_GUN, 15
+
+    if  heiko<30
+      ;treffer
+      blit #HEIKO1, 59, heiko
+      bouncing=FALSE
+    endif
+  endif
+
+  VWait 1
+
+  ;TODO doublebuffering
+wend
+
+
+;wait
+MouseWait
+end
