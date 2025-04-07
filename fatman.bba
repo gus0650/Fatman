@@ -32,6 +32,11 @@ ScreensBitMap 0,0
 LoadScreen 0, "gfx/fatman.pic.iff", 0
 use palette 0
 
+;LoadFont 0, "courier", 11 
+;WindowFont 0
+
+
+
 ;shapes
 for i = 0 to 3
     read x, y, x2, y2
