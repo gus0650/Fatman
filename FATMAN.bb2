@@ -53,7 +53,7 @@ Boxf 1,12,246,255,0 ; clear screen
 CopyBitMap 0, 1
 
 
-;---------------------- START
+;---------------------- BLITZ MODE
 
 ;create display
 BLITZ
