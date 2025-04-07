@@ -15,7 +15,9 @@
 ;LoadModule 0, "mus/pac.mod"
 ;PlayModule 0
 
-;LoadSound #SND_BOUNCE, "snd/start.snd.iff"
+LoadSound #SND_BOUNCE, "snd/Sound1"
+LoadSound #SND_GUN, "snd/gun"
+Sound #SND_BOUNCE,15
 ;LoadSound #SND_GUN, "snd/start.snd.iff"
 
 ;doublebuffer
@@ -25,10 +27,6 @@ BitMap 1,320,256,5
 LoadBitMap 0, "gfx/fatman.pic.32.iff", 0
 
 LoadPalette 0, "gfx/fatman.pic.32.iff", 0
-
-;font
-;LoadFont 0, "courier", 11 
-;WindowFont 0
 
 ;shapes
 use bitmap 0
@@ -70,7 +68,7 @@ blit #LOGO, 60, 60
 
 MouseWait
 
-
+StopModule
 
 ;---------------------- MAIN LOOP
 
@@ -99,7 +97,7 @@ while bouncing
   bounce=bounce+2
   IF bounce=180
   	bounce=2
-    ;Sound #SND_BOUNCE,15
+    Sound #SND_BOUNCE,15
   ENDIF
 
   x=SIN(bounce*3.141593/180)
@@ -111,7 +109,7 @@ while bouncing
 
   ;fire button pressed?
   if Joyb(0)
-    ;Sound #SND_GUN, 15
+    Sound #SND_GUN, 15
 
     if heiko<30
       ;treffer
