@@ -1,4 +1,6 @@
-FATMAN is a game
+FATMAN is 
+
+a satirical game
 
 written by Gustaf Stechmann
 
