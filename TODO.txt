@@ -1,0 +1,20 @@
+FATMAN TODO
+===========
+
+mündungsfeuer für die pistole
+
+soundeffekte
+ gunshot
+ bounce (lustig)
+ "furzen" wenn er stirbt, oder aus lemmings klauen -- gerippte sounds liegen auf NAS/software/amiga/sounds
+
+munition runterzählen - man hat nur 6 schuss
+
+game over wenn man alle schüsse verbraucht hat
+game won wenn man ihn trifft
+
+input mit maus, joystick oder tastatur
+ 
+instruction text im titlescreen
+
+copyright notice
