@@ -12,19 +12,19 @@
 #SND_GUN=1
 
 ; music
-;LoadModule 0, "mus/pac.mod"
+;LoadModule 0, "assets/mus/pac.mod"
 ;PlayModule 0
 
-LoadSound #SND_BOUNCE, "snd/Sound1"
-LoadSound #SND_GUN, "snd/gun"
+LoadSound #SND_BOUNCE, "assets/snd/Sound1"
+LoadSound #SND_GUN, "assets/snd/gun"
 
 ;doublebuffer
 BitMap 0,320,256,5
 BitMap 1,320,256,5
 
-LoadBitMap 0, "gfx/fatman.pic.32.iff", 0
+LoadBitMap 0, "assets/gfx/fatman.pic.32.iff", 0
 
-LoadPalette 0, "gfx/fatman.pic.32.iff", 0
+LoadPalette 0, "assets/gfx/fatman.pic.32.iff", 0
 
 ;shapes
 use bitmap 0
