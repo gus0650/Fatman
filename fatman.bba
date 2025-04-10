@@ -35,19 +35,17 @@ use bitmap 0
 
 for i = 0 to 3
     read x, y, x2, y2
-    y=(256-y)
     w=x2-x
-    y2=(256-y2)
     h=y2-y
 
     GetaShape i,x,y,w,h
 next
 
-DATA 7,159,156,10 ;heiko1
-DATA 157,159,232,98	;heiko2
-DATA 50,241,201,166	;logo
-DATA 213,236,246,207 ;gun
-DATA 213,236,246,207 ;muzzle
+DATA 7,97,156,246    ;heiko1
+DATA 157,97,232,158	;heiko2
+DATA 50,15,201,90	;logo
+DATA 213,20,246,49 ;gun
+DATA 213,20,246,49 ;muzzle
 
 Boxf 6,12,246,250,0 ;clear screen
 
