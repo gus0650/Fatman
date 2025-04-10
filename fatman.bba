@@ -33,7 +33,7 @@ LoadPalette 0, "assets/gfx/fatman.pic.32.iff", 0
 ;extract shapes
 use bitmap 0
 
-for i = 0 to 3
+for i = 0 to 4
     read x, y, x2, y2
     w=x2-x
     h=y2-y
@@ -41,11 +41,12 @@ for i = 0 to 3
     GetaShape i,x,y,w,h
 next
 
+;coordinates of left top corner + bottom right corner
 DATA 7,97,156,246    ;heiko1
 DATA 157,97,232,158	;heiko2
-DATA 50,15,201,90	;logo
+DATA 50,15,201,90	 ;logo
 DATA 213,20,246,49 ;gun
-DATA 213,20,246,49 ;muzzle
+DATA 183,20,226,49 ;muzzle
 
 Boxf 6,12,246,250,0 ;clear screen
 
@@ -73,12 +74,11 @@ StopModule
 
 heiko=30
 y=100
-bouncing=TRUE
 db=0
 ammo = 6
 
 ;bounce
-while bouncing
+while TRUE
 
   Boxf 6,12,246,250,0 ;clear screen
   
@@ -89,7 +89,7 @@ while bouncing
   ;draw gun
   blit #GUN, 200, 20
 
-  if (muzzle > 0) blit #MUZZLE, 200, 20
+  if (muzzle > 0) blit #MUZZLE, 160, 20
   muzzle = muzzle-1
 
   ;erase heiko
@@ -117,8 +117,12 @@ while bouncing
     if heiko<30
       ;treffer
       blit #HEIKO1, 59, heiko
-      bouncing=FALSE
       Sound #SND_KILL, 4
+
+      db=1-db
+      Show db
+      use Bitmap db
+
       goto win
     endif
 
@@ -136,9 +140,6 @@ while bouncing
   Show db
 
 wend
-
-VWait 2
-
 
 
 ;---------------------- LOOSE
