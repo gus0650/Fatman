@@ -46,7 +46,7 @@ DATA 7,97,156,246    ;heiko1
 DATA 157,97,232,158	;heiko2
 DATA 50,15,201,90	 ;logo
 DATA 213,20,246,49 ;gun
-DATA 183,20,226,49 ;muzzle
+DATA 188,180,226,249 ;muzzle
 
 Boxf 6,12,246,250,0 ;clear screen
 
@@ -65,6 +65,16 @@ use palette 0
 
 blit #LOGO, 60, 60
 
+BitMapOutput 0
+Locate 33,4
+Print "PRESS"
+Locate 33,5
+Print "BUTTON"
+Locate 33,6
+Print "TO"
+Locate 33,7
+Print "START"
+
 MouseWait
 
 StopModule
@@ -79,26 +89,25 @@ ammo = 6
 
 ;bounce
 while TRUE
+  use bitmap db
 
-  Boxf 6,12,246,250,0 ;clear screen
+  ;clear screen
+  Boxf 6,12,246,250,0 
   
   ;draw ammo
-;  Locate 33,2 ;crashes in Blitz mode
-;  print "00000"
+  BitMapOutput dp
+  Locate 33,1
+  print "0000", ammo
 
   ;draw gun
   blit #GUN, 200, 20
 
-  if (muzzle > 0) blit #MUZZLE, 160, 20
+  if (muzzle > 0) blit #MUZZLE, 160, 6
   muzzle = muzzle-1
-
-  ;erase heiko
-;  BlitMode EraseMode
-;  blit #HEIKO, 50, heiko
 
   ;calculate movement
   bounce=bounce+2
-  IF bounce=180
+  IF bounce=180 ;reached bottom
   	bounce=2
     Sound #SND_BOUNCE, 1
   ENDIF
@@ -111,17 +120,16 @@ while TRUE
   blit #HEIKO, 50, heiko
 
   ;fire button pressed?
-  if Joyb(0)
+  if Joyb(0) or key
     Sound #SND_GUN, 2
 
     if heiko<30
       ;treffer
       blit #HEIKO1, 59, heiko
-      Sound #SND_KILL, 4
 
-      db=1-db
-      Show db
-      use Bitmap db
+      blit #MUZZLE, 160, 6
+
+      Sound #SND_KILL, 4
 
       goto win
     endif
@@ -129,15 +137,15 @@ while TRUE
     ammo = ammo-1
     if ammo = 0 goto loose
 
-    muzzle = 8
+    muzzle = 6; show for n frames
   endif
+
+  show db
 
   VWait
 
   ;doublebuffering
-  use bitmap db
   db=1-db
-  Show db
 
 wend
 
@@ -146,10 +154,16 @@ wend
 
 loose:
 
-;Locate 33,2 ;crashes in Blitz mode
-;print "YOU WIN!"
+Locate 33,4
+print "YOU"
+Locate 33,5
+print "FAIL"
+Locate 33,6
+print "!!!"
 
-;VWait 50
+show db
+
+VWait 50
 
 MouseWait
 end
@@ -159,8 +173,14 @@ end
 
 win:
 
-;Locate 33,2 ;crashes in Blitz mode
-;print "YOU LOSE!"
+Locate 33,4
+print "YOU"
+Locate 33,5
+print "WIN"
+Locate 33,6
+print "!!!"
+
+show db
 
 VWait 50
 
