@@ -1,13 +1,15 @@
-FATMAN is 
+FATMAN is a game where a dude bounces up and down on his big butt, and you have a gun with 6 bullets. 
 
-a satirical game
+It is a very intuitive game.
 
-written by Gustaf Stechmann
+This game was created to prank a guy who questioned my coding skills in a nasty way and I had to teach him a lesson. I made copies of this game on floppy disk and spread it around the schoolyard. Revenge is sweet!
 
-on Amiga
+What can I say? It was the 90s. Our hair was long and our brains were ... not in good shape.
 
-in BlitzBasic 2
+This was first written in AmigaBASIC but later converted to Blitzbasic.
 
-in 1994.
+Created by Gustaf Stechmann
 
-This game was made to motivate our friend Heiko to go to the gym and lose some weight.
+(c) 1990
+
+https://gus0650.itch.io/

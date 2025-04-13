@@ -16,9 +16,10 @@
 #SND_FAIL=4
 ;sound channels = 1 2 4 8
 
-; music
-LoadModule 0, "assets/mus/pac.mod"
-;PlayModule 0  ;StopModule funktioniert nicht, mod spielt einfach weiter
+;music
+;LoadModule 0, "assets/mus/boing.mod"
+;LoadModule 0, "assets/mus/pacman.mod"
+;PlayModule 0  ; StopModule funktioniert nicht, mod spielt einfach weiter, dadurch gehen die sfx im spiel nicht
 
 LoadSound #SND_START, "assets/snd/fart.8svx.iff"
 LoadSound #SND_BOUNCE, "assets/snd/bounce.8svx.iff"
@@ -107,6 +108,8 @@ main:
 Boxf 252,30,310,200,0 ;clear text area
 
 StopModule
+StopPTModule
+StopTracker
 
 VWait 5 ;wait for release mouse button
 
