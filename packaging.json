@@ -1,0 +1,19 @@
+{
+    "supports": [
+        {
+            "type": "adf",
+            "boot": true,
+            "supportName": "Fatman",
+            "exeToLaunch": "fatman.exe",
+            "includeDiskFontLibrary": true,
+            "includeMathTransLibrary": false,
+            "filesToIncludeOnRoot": [
+                "fatman.exe",
+                "fatman.exe.info"
+            ],
+            "foldersToInclude": [
+                "assets"
+            ]
+        }
+    ]
+}
