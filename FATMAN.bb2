@@ -21,11 +21,11 @@
 ;LoadModule 0, "assets/mus/pacman.mod"
 ;PlayModule 0  ; StopModule funktioniert nicht, mod spielt einfach weiter, dadurch gehen die sfx im spiel nicht
 
-LoadSound #SND_START, "assets/snd/fart.8svx.iff"
+LoadSound #SND_START, "assets/snd/trringg!.iff"
 LoadSound #SND_BOUNCE, "assets/snd/bounce.8svx.iff"
 LoadSound #SND_GUN, "assets/snd/gun.8svx.iff"
 LoadSound #SND_KILL, "assets/snd/die.8svx.iff"
-LoadSound #SND_FAIL, "assets/snd/ohno.8svx.iff"
+LoadSound #SND_FAIL, "assets/snd/bottieburp.iff"
 
 ;doublebuffer
 BitMap 0,320,256,5
@@ -132,13 +132,13 @@ while TRUE
 
   ;draw ammo
   BitMapOutput db
-  Locate 33,1
+  Locate 33,0.9
   print "0000", ammo
 
   ;draw gun
   blit #GUN, 200, 20
 
-  if (muzzle > 0) blit #MUZZLE, 160, 6
+  if (muzzle > 0) blit #MUZZLE, 160, 7
   muzzle = muzzle-1
 
   ;calculate movement
@@ -160,7 +160,7 @@ while TRUE
   if Joyb(1)
     Sound #SND_GUN, 2
 
-    if heiko<30
+    if heiko<20
       ;treffer
       blit #HEIKO1, 59, heiko
 
@@ -188,11 +188,21 @@ loose:
 
 Sound #SND_FAIL, 4
 
+Locate 33,0.9
+print "00000"
+
 Locate 33,4
-print "YOU"
+print "OUT"
 Locate 33,5
-print "FAIL"
+print "OF"
 Locate 33,6
+print "AMMO"
+
+Locate 33,8
+print "YOU"
+Locate 33,9
+print "FAIL"
+Locate 33,10
 print "!!!"
 
 show db
@@ -211,10 +221,15 @@ win:
 Sound #SND_KILL, 4
 
 Locate 33,4
-print "YOU"
+print "NICE"
 Locate 33,5
+print "SHOT"
+
+Locate 33,7
+print "YOU"
+Locate 33,8
 print "WIN"
-Locate 33,6
+Locate 33,9
 print "!!!"
 
 show db

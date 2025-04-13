@@ -1,9 +1,13 @@
-FATMAN is a stupid little game where an overweight dude bounces up and down on his butt, you have a gun with 6 bullets. Figure it out.
+FATMAN is a game where a dude bounces up and down on his big butt, and you have a gun with 6 bullets. 
 
-This game was created to make fun of a classmate and motivate him into going to the gym and losing some weight.
+It is a very intuitive game.
 
-What can I say? It was the 90s and "college humor" was a thing.
+This game was created to prank a guy who was being nasty and had to be taught a lesson. I made copies on floppy disk and spread them around the schoolyard. Revenge is sweet!
+
+What can I say? It was the 90s. Our hair was long and our brains were ... not in good shape.
+
+This was first written in AmigaBASIC but later converted to Blitzbasic.
 
 Created by Gustaf Stechmann
 
-(c) 1991
+(c) 1990
