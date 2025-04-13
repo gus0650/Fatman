@@ -1,7 +1,6 @@
 ;fatman
-;blitzbasic 2.1
-;crtl-alt-c to stop execution
-
+;blitzbasic 2.1 amiga
+;14.3.2025
 
 ;shape constants
 #HEIKO=0
@@ -10,18 +9,22 @@
 #GUN=3
 #MUZZLE=4
 
-#SND_BOUNCE=0
-#SND_GUN=1
-#SND_KILL=2
+#SND_START=0
+#SND_BOUNCE=1
+#SND_GUN=2
+#SND_KILL=3
+#SND_FAIL=4
 ;sound channels = 1 2 4 8
 
 ; music
-;LoadModule 0, "assets/mus/pac.mod"
-;PlayModule 0
+LoadModule 0, "assets/mus/pac.mod"
+;PlayModule 0  ;StopModule funktioniert nicht, mod spielt einfach weiter
 
+LoadSound #SND_START, "assets/snd/fart.8svx.iff"
 LoadSound #SND_BOUNCE, "assets/snd/bounce.8svx.iff"
 LoadSound #SND_GUN, "assets/snd/gun.8svx.iff"
 LoadSound #SND_KILL, "assets/snd/die.8svx.iff"
+LoadSound #SND_FAIL, "assets/snd/ohno.8svx.iff"
 
 ;doublebuffer
 BitMap 0,320,256,5
@@ -48,7 +51,7 @@ DATA 50,15,201,90	 ;logo
 DATA 213,20,246,49 ;gun
 DATA 188,180,226,249 ;muzzle
 
-Boxf 6,12,246,250,0 ;clear screen
+Boxf 6,12,246,250,0 ;clear play area
 
 CopyBitMap 0, 1 ;copy to second buffer
 
@@ -60,8 +63,17 @@ Slice 0,44,5
 Show 0
 use palette 0
 
+BitMapInput
+
+Mouse off
 
 ;---------------------- TITLE
+
+title:
+
+use bitmap 0
+Boxf 6,12,246,250,0 ;clear play area
+Boxf 252,30,310,200,0 ;clear text area
 
 blit #LOGO, 60, 60
 
@@ -69,33 +81,54 @@ BitMapOutput 0
 Locate 33,4
 Print "PRESS"
 Locate 33,5
-Print "BUTTON"
+Print "FIRE"
 Locate 33,6
 Print "TO"
 Locate 33,7
 Print "START"
 
-MouseWait
+Locate 7,27
+Print "(c)1990 G Stechmann"
 
-StopModule
+show 0
+
+VWait 5; wait for joystick button release
+
+while TRUE
+  if Joyb(1) goto main
+  VWait
+wend
 
 
 ;---------------------- MAIN LOOP
 
-heiko=30
+main:
+
+Boxf 252,30,310,200,0 ;clear text area
+
+StopModule
+
+VWait 5 ;wait for release mouse button
+
+Sound #SND_START, 15
+
+heiko=50
+bounce = 150
 y=100
 db=0
 ammo = 6
+muzzle = 0
 
 ;bounce
 while TRUE
+  db=1-db ;switch to offscreen bitmap
   use bitmap db
 
-  ;clear screen
-  Boxf 6,12,246,250,0 
-  
+  Boxf 6,12,246,250,0 ;clear play area
+  Boxf 252,30,310,200,0 ;clear text area
+
   ;draw ammo
-  BitMapOutput dp
+  BitMapOutput db
   Locate 33,1
   print "0000", ammo
 
@@ -120,7 +153,8 @@ while TRUE
   blit #HEIKO, 50, heiko
 
   ;fire button pressed?
-  if Joyb(0) or key
+  bitmapinput
+  if Joyb(1)
     Sound #SND_GUN, 2
 
     if heiko<30
@@ -129,23 +163,18 @@ while TRUE
 
       blit #MUZZLE, 160, 6
 
-      Sound #SND_KILL, 4
-
       goto win
     endif
 
     ammo = ammo-1
     if ammo = 0 goto loose
 
-    muzzle = 6; show for n frames
+    muzzle = 4; show for n frames
   endif
 
   show db
-
+  
   VWait
-
-  ;doublebuffering
-  db=1-db
 
 wend
 
@@ -153,6 +182,8 @@ wend
 ;---------------------- LOOSE
 
 loose:
+
+Sound #SND_FAIL, 4
 
 Locate 33,4
 print "YOU"
@@ -162,16 +193,19 @@ Locate 33,6
 print "!!!"
 
 show db
-
 VWait 50
 
-MouseWait
-end
+while TRUE
+  if Joyb(1) goto title
+  VWait
+wend
 
 
 ;---------------------- WIN
 
 win:
+
+Sound #SND_KILL, 4
 
 Locate 33,4
 print "YOU"
@@ -181,8 +215,9 @@ Locate 33,6
 print "!!!"
 
 show db
-
 VWait 50
 
-MouseWait
-end
+while TRUE
+  if Joyb(1) goto title
+  VWait
+wend

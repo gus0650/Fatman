@@ -2,10 +2,3 @@ FATMAN TODO
 ===========
 
 start sound
-
-flicker problem
-
-input mit maus, joystick oder tastatur
- 
-
-copyright notice
