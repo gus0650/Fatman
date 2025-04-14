@@ -1,0 +1,4 @@
+FATMAN NOTES
+============
+
+code includes sqr() command, this calls mathtrans.library, so it must be present on disk image

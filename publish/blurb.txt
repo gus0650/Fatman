@@ -1,12 +1,18 @@
-FATMAN is a game where a dude bounces up and down on his big butt, and you have a gun with 6 bullets. 
+FATMAN
 
-It is a very intuitive game.
+for Commodore Amiga
 
-This game was created to prank a guy who was being nasty and had to be taught a lesson. I made copies on floppy disk and spread them around the schoolyard. Revenge is sweet!
+FATMAN is a game where a dude bounces up and down on his big butt, and you have a gun with 6 bullets. The rest of the game is self-explanatory. ;)
 
-What can I say? It was the 90s. Our hair was long and our brains were ... not in good shape.
+This game was created to prank a guy who was behaving badly towards me at school, and had to be taught a lesson. So I made this game, put it on floppy disk, and spread copies of it around the schoolyard. Revenge is sweet!
+
+What can I say? It was the 90s. Crude humor was the norm. Our hair was long and our brains were ... not in good shape.
 
 This was first written in AmigaBASIC but later converted to Blitzbasic.
+
+Music is by Yannis Brown and was taken from Aminet, https://pup.aminet.net/package/mods/pro/yb-boing
+
+Source code is on GitHub https://github.com/gus0650/Fatman/
 
 Created by Gustaf Stechmann
 

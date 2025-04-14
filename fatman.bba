@@ -140,6 +140,8 @@ while TRUE
 
   ;draw gun
   blit #GUN, 200, 20
+  ;shadow
+  Circlef 108, 227, 30, 10, 30
 
   if (muzzle > 0) blit #MUZZLE, 160, 7
   muzzle = muzzle-1
