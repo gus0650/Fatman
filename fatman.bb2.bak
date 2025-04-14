@@ -101,7 +101,7 @@ VWait 5; wait for joystick button release
 
 while TRUE
   if Joyb(1) goto main
-  if RawStatus($45)=-1 end;ESC key
+  if RawStatus(45)=-1 end;ESC key
   VWait
 wend
 
@@ -182,7 +182,7 @@ while TRUE
   
   VWait
 
-  if RawStatus($45)=-1 end;ESC key
+  if RawStatus(45)=-1 end;ESC key
 wend
 
 
