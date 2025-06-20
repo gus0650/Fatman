@@ -1,9 +1,4 @@
 FATMAN TODO
 ===========
 
-ADF zum laufen kriegen
-	im forum gefragt
-
-release on itch.io
-
-repository public machen
+all done.

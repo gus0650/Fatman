@@ -5,8 +5,8 @@
             "boot": true,
             "supportName": "Fatman",
             "exeToLaunch": "fatman.exe",
-            "includeDiskFontLibrary": true,
-            "includeMathTransLibrary": false,
+            "includeDiskFontLibrary": false,
+            "includeMathTransLibrary": true,
             "filesToIncludeOnRoot": [
                 "fatman.exe",
                 "fatman.exe.info"
